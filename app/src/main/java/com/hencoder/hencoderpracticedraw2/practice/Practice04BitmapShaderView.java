@@ -1,14 +1,25 @@
 package com.hencoder.hencoderpracticedraw2.practice;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.hencoder.hencoderpracticedraw2.R;
+
 public class Practice04BitmapShaderView extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    private BitmapShader clampShader = new BitmapShader(BitmapFactory.decodeResource(getResources(), R.drawable.batman), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+
+    private BitmapShader mirrorShader = new BitmapShader(BitmapFactory.decodeResource(getResources(), R.drawable.batman), Shader.TileMode.MIRROR, Shader.TileMode.MIRROR);
+
+    private BitmapShader repeatShader = new BitmapShader(BitmapFactory.decodeResource(getResources(), R.drawable.batman), Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
     public Practice04BitmapShaderView(Context context) {
         super(context);
@@ -31,6 +42,11 @@ public class Practice04BitmapShaderView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawCircle(200, 200, 200, paint);
+//        paint.setShader(clampShader);
+//        canvas.drawCircle(200, 200, 300, paint);
+//        paint.setShader(mirrorShader);
+//        canvas.drawCircle(500, 200, 300, paint);
+        paint.setShader(repeatShader);
+        canvas.drawCircle(800, 200, 300, paint);
     }
 }
